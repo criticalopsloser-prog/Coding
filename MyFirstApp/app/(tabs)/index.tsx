@@ -10,7 +10,7 @@ export default function App() {
       <Image
         source={{ uri: 'https://media.discordapp.net/attachments/1335234294045610099/1504434257223749692/image.png?ex=6a06f915&is=6a05a795&hm=171c8356fa2697a719e3b10a4b6ad47ff9f6ce4140acde800876b9318ddcff86&=&format=webp&quality=lossless' }}
         style={s.photo}
-        contentFit="cover" // This ensures the image fills the circle completely
+        contentFit="cover" // I asked gemini to make the image fit [ 05/14/2026 ]
       />
       
       <Text style={s.name}>John Neo Tapon</Text>
@@ -29,17 +29,17 @@ const s = StyleSheet.create({
     backgroundColor: '#ba82ff', 
     alignItems: 'center', 
     justifyContent: 'center',
-    paddingHorizontal: 30 // Increased padding for a cleaner bio look
+    paddingHorizontal: 30 
   },
   photo: { 
-    width: 180,           // Increased from 120
-    height: 180,          // Increased from 120
-    borderRadius: 90,     // Must be 1/2 of width/height
+    width: 180,          
+    height: 180,          
+    borderRadius: 90,     
     marginBottom: 20,
-    backgroundColor: '#ddd' // Placeholder color while image loads
+    backgroundColor: '#ddd'
   },
   name: { 
-    fontSize: 26,         // Slightly larger for emphasis
+    fontSize: 26,        
     fontWeight: 'bold', 
     color: '#000',
     marginBottom: 4
