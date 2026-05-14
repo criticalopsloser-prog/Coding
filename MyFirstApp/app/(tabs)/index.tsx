@@ -1,110 +1,58 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
-
-// 1. Change the name
-const myName = "Cheon"; 
-
-const greet = (name) => {
-  return `What's up ${name}, Welcome!`;
-};
-const classmates = ["Kerby", "Shaun", "Claire", "Carl", "Junie"];
-
-console.log("Developer:", myName);
-console.log(classmates.map(name => greet(name)));
-
+export default function App() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Hi There! I am Cheon.</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={s.screen}>
+      <StatusBar barStyle="dark-content" />
+      
+      <Image
+        source={{ uri: 'https://media.discordapp.net/attachments/1335234294045610099/1504434257223749692/image.png?ex=6a06f915&is=6a05a795&hm=171c8356fa2697a719e3b10a4b6ad47ff9f6ce4140acde800876b9318ddcff86&=&format=webp&quality=lossless' }}
+        style={s.photo}
+        contentFit="cover" // This ensures the image fills the circle completely
+      />
+      
+      <Text style={s.name}>John Neo Tapon</Text>
+      <Text style={s.course}>MMA · CS126</Text>
+      
+      <Text style={s.bio}>
+        Someone who struggles to draw, gym goer, plays games like valorant and overwatch and more.
+      </Text>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+const s = StyleSheet.create({
+  screen: { 
+    flex: 1, 
+    backgroundColor: '#ba82ff', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    paddingHorizontal: 30 // Increased padding for a cleaner bio look
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  photo: { 
+    width: 180,           // Increased from 120
+    height: 180,          // Increased from 120
+    borderRadius: 90,     // Must be 1/2 of width/height
+    marginBottom: 20,
+    backgroundColor: '#ddd' // Placeholder color while image loads
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  name: { 
+    fontSize: 26,         // Slightly larger for emphasis
+    fontWeight: 'bold', 
+    color: '#000',
+    marginBottom: 4
   },
+  course: { 
+    fontSize: 18, 
+    color: '#000',
+    marginBottom: 15
+  },
+  bio: { 
+    fontSize: 15, 
+    color: '#000', 
+    textAlign: 'center',
+    lineHeight: 22
+  }
 });
